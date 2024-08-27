@@ -1,5 +1,5 @@
 from .SeamlessTile import (CircularVAEDecode, MakeCircularVAE, OffsetImage,
-                           SeamlessTile)
+                           Tiled_KSampler, SeamlessTile)
 
 NODE_CLASS_MAPPINGS = {
     "Tiled KSampler": Tiled_KSampler,

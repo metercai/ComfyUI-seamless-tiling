@@ -21,7 +21,7 @@ class SeamlessTile:
             },
         }
 
-    CATEGORY = "conditioning"
+    CATEGORY = "SeamlessTile"
 
     RETURN_TYPES = ("MODEL",)
     FUNCTION = "run"
@@ -76,7 +76,7 @@ class CircularVAEDecode:
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "decode"
 
-    CATEGORY = "latent"
+    CATEGORY = "SeamlessTile"
 
     def decode(self, samples, vae, tiling):
         vae_copy = copy.deepcopy(vae)
@@ -107,7 +107,7 @@ class MakeCircularVAE:
 
     RETURN_TYPES = ("VAE",)
     FUNCTION = "run"
-    CATEGORY = "latent"
+    CATEGORY = "SeamlessTile"
 
     def run(self, vae, tiling, copy_vae):
         if copy_vae == "Modify in place":
@@ -146,7 +146,7 @@ class OffsetImage:
 
     RETURN_TYPES = ("IMAGE",)
     FUNCTION = "run"
-    CATEGORY = "image"
+    CATEGORY = "SeamlessTile"
 
     def run(self, pixels, x_percent, y_percent):
         n, y, x, c = pixels.size()
@@ -174,7 +174,7 @@ class Tiled_KSampler:
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "sample"
 
-    CATEGORY = "Sampling/Tiled"
+    CATEGORY = "SeamlessTile"
     def apply_circular(self, model, enable):
         for layer in [layer for layer in model.modules() if isinstance(layer, torch.nn.Conv2d)]:
             layer.padding_mode = 'circular' if enable else 'zeros'

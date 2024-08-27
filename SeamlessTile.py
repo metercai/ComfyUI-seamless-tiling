@@ -154,7 +154,7 @@ class OffsetImage:
         x = round(x * x_percent / 100)
         return (pixels.roll((y, x), (1, 2)),)
 
-class Tiled_KSampler:
+class TiledKSampler:
     @classmethod
     def INPUT_TYPES(cls):
         return {"required":

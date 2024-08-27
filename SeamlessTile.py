@@ -160,7 +160,7 @@ class Tiled_KSampler:
         return {"required":
                 {"model": ("MODEL", ),
                  "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                 "tiling": ("INT", {"default": 1, "min": 0, "max": 1}),
+                 "tiling": (["enable", "x_only", "y_only", "disable"],),
                  "steps": ("INT", {"default": 20, "min": 1, "max": 10000}),
                  "cfg": ("FLOAT", {"default": 8.0, "min": 0.0, "max": 100.0}),
                  "sampler_name": (comfy.samplers.KSampler.SAMPLERS, ),
@@ -180,7 +180,7 @@ class Tiled_KSampler:
             layer.padding_mode = 'circular' if enable else 'zeros'
 
     def sample(self, model, seed, tiling, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=1.0):
-        self.apply_circular(model.model, tiling == 1)
+        self.apply_circular(model.model, tiling == "enable")
         return nodes.common_ksampler(model, seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=denoise)
 
 
